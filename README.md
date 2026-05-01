@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaskBridge Studio
 
-## Getting Started
+TaskBridge Studio is a modern landing page for a tech-savvy admin and operations support service. It is designed to help potential clients inquire about admin support, documentation, scheduling, research, spreadsheets, digital tools, and workflow assistance.
 
-First, run the development server:
+The website is connected to an n8n automation workflow, so every inquiry submitted through the contact form is automatically processed.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What the System Does
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+When a client submits the inquiry form on the website, the system automatically:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Receives the form submission through a Next.js API route
+2. Sends the inquiry data to an n8n webhook
+3. Cleans and prepares the submitted data
+4. Saves the lead into Google Sheets
+5. Sends an email notification to the business owner
+6. Sends an automatic confirmation email to the client
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This creates a simple but real lead capture and follow-up system for TaskBridge Studio.
 
-## Learn More
+## Automation Flow
 
-To learn more about Next.js, take a look at the following resources:
+![TaskBridge n8n Automation Flow](public/n8n.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Frontend
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion
 
-## Deploy on Vercel
+### UI / Assets
+- Lucide React
+- React Icons
+- Custom images and logo assets
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend / API
+- Next.js API Route
+- Environment variable configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Automation
+- n8n Webhook
+- n8n Edit Fields
+- Google Sheets integration
+- Gmail integration
+
+### External Tools
+- Google Sheets for lead tracking
+- Gmail for email notification and auto-reply
+- n8n Cloud for workflow automation
+
+## Main Features
+
+- Responsive landing page
+- Modern hero section with image layout
+- Animated sections and interactive UI
+- Service highlights
+- Tools section with icons
+- Contact/inquiry form
+- Custom dropdown selection
+- Form validation with red error states
+- Loading state to prevent duplicate submissions
+- Success and error feedback messages
+- n8n-powered lead automation
+
+## Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+N8N_WEBHOOK_URL=https://your-n8n-domain.com/webhook/taskbridge-lead
